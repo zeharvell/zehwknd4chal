@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import GalleryItem from '../GalleryItem/GalleryItem';
 
 class GalleryList extends Component {
   //render and return inside of return necescarry
@@ -14,7 +15,7 @@ class GalleryList extends Component {
     });
     return (
       <div>
-        <div>{pcList}</div>
+        <div>{imgList}</div>
       </div>
     );
   }
