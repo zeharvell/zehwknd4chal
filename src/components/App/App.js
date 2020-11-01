@@ -38,13 +38,22 @@ class App extends Component {
         });
       });
   }
-  updateGalleryData() {
+  updateGalleryData = (imageId) => {
+    console.log('updateGalleryData');
     axios({
       method: 'PUT',
-      url: '/like/:id',
-      data: 'empty',
-    });
-  }
+      url: `gallery/like/${imageId}`,
+    })
+      .then((response) => {
+        this.getGalleryData();
+      })
+      .catch((err) => {
+        console.log(err);
+        this.setState({
+          errorMsg: 'Could not update PUT gallery',
+        });
+      });
+  };
 
   render() {
     return (
@@ -54,18 +63,10 @@ class App extends Component {
         </header>
         <br />
         <p>Gallery goes here</p>
-        <img src="images/goat_small.jpg" />
-        {JSON.stringify(this.state.galleryList)}
-
-        <div>
-          {this.state.galleryList.map((item) => (
-            <div key={item.id}>
-              <img src={item.path} />
-              <p>{item.description}</p>
-              <p>{item.likes} people love this!</p>
-            </div>
-          ))}
-        </div>
+        <GalleryList
+          image={this.state.galleryList}
+          updateGalleryData={this.updateGalleryData}
+        />
       </div>
     );
   }
