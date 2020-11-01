@@ -31,7 +31,7 @@ class GalleryItem extends Component {
   render() {
     console.log('state');
     return (
-      <div>
+      <div className="container">
         <div className="image">{this.toggleImage()}</div>
         <button
           onClick={() => this.props.updateGalleryData(this.props.item.id)}
